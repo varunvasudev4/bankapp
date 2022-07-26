@@ -1,0 +1,31 @@
+
+<!-- As a heading -->
+ <nav class="navbar bg-primary">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1 text-warning fs-3 brand"><i class="fa-solid fa-building-columns"></i> CSD Bank</span>
+      <span class="text-end brand text-warning">Money You Can Trust</span>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4 p-5">
+        <div class="loginbox mt-5">
+            <form action="" class="p-3 mt-5">
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-primary text-warning"><i class="fa-solid fa-user"></i></span>
+                    <input [(ngModel)]="accnum" name="accnum" type="text" id="accnum" class="form-control" placeholder="User ID" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-primary text-warning"><i class="fa-solid fa-key"></i></span>
+                    <input [(ngModel)]="accpwrd" name="accpwrd" type="password" id="accpwrd" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button (click)="login()" class="btn btn-primary text-warning" type="button" onclick="login()">Login</button>
+                </div>
+            </form>
+
+            <p class="ms-3 mt-3">New User <a routerLink="register">Register</a></p>
+        </div>
+    </div>
+  </div>

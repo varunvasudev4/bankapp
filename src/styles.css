@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+.brand{
+    font-family: 'Comfortaa', cursive;
+}
+body{
+    background: url("./assets/bank.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
