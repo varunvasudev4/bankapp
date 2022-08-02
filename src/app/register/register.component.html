@@ -11,21 +11,25 @@
     <div class="col-lg-4"></div>
     <div class="col-lg-4 p-5">
         <div class="loginbox mt-5">
-            <form action="" class="p-3 mt-5">
+            <form [formGroup]="rform" (ngSubmit)="register()" class="p-3 mt-5">
                 <div class="input-group mb-3">
                     <span class="input-group-text bg-primary text-warning"><i class="fa-solid fa-user"></i></span>
-                    <input type="text" [(ngModel)]="accname" name="accname" id="accname" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <!-- <input type="text" [(ngModel)]="accname" name="accname" id="accname" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+                    <input type="text" formControlName="accname" name="accname" id="accname" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
+                <div *ngIf="this.rform.get('accname')?.touched && this.rform.get('accname')?.errors">Invalid Username</div>
                 <div class="input-group mb-3">
                     <span class="input-group-text bg-primary text-warning"><i class="fa-solid fa-hashtag"></i></span>
-                    <input type="text" [(ngModel)]="accnum" name="accnum" id="accnum" class="form-control" placeholder="Account number" aria-label="Account nmuber" aria-describedby="basic-addon1">
+                    <input type="text" formControlName="accnum" name="accnum" id="accnum" class="form-control" placeholder="Account number" aria-label="Account nmuber" aria-describedby="basic-addon1">
                 </div>
+                <div *ngIf="this.rform.get('accnum')?.touched && this.rform.get('accnum')?.errors">Invalid Account Number</div>
                 <div class="input-group mb-3">
                     <span class="input-group-text bg-primary text-warning"><i class="fa-solid fa-key"></i></span>
-                    <input type="password"  [(ngModel)]="accpwrd" name="accpwrd" id="accpwrd" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                    <input type="password"  formControlName="accpwrd" name="accpwrd" id="accpwrd" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                 </div>
+                <div *ngIf="this.rform.get('accpwrd')?.touched&&this.rform.get('accpwrd')?.errors">Invalid Password</div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary text-warning" type="button" (click)="register()">Register</button>
+                    <button (click)="register()" class="btn btn-primary text-warning" type="button">Register</button>
                 </div>
             </form>
 

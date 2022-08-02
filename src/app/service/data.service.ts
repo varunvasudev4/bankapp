@@ -14,13 +14,16 @@ export class DataService {
 
   }
 
-  constructor() { }
+  constructor() { 
+    this.getData()
+  }
 
   login(accno: any, accpwrd: any) {
     var accs = this.accounts
     if (accno in accs) {
       if (accpwrd == accs[accno]['accpwrd']) {
         this.cuser = accno
+        this.saveData()
         return true
       } else {
         return false
@@ -43,6 +46,7 @@ export class DataService {
         accbal: 2000,
         transaction: []
       }
+      this.saveData()
       return true
     }
 
@@ -56,6 +60,7 @@ export class DataService {
       type: "CREDIT",
       amount: accamt
     })
+    this.saveData()
     return true
   }
 
@@ -73,6 +78,7 @@ export class DataService {
         type: "CREDIT",
         amount: toamt
       })
+      this.saveData()
       return true
     }else{
       return false
@@ -83,5 +89,22 @@ export class DataService {
     var acc = this.accounts
     var acno = this.cuser
     return acc[acno]['transaction']
+  }
+
+  saveData(){
+    if(this.accounts){
+      localStorage.setItem('accounts',JSON.stringify(this.accounts))
+    }
+    if(this.cuser){
+      localStorage.setItem('cuser',JSON.stringify(this.cuser))
+    }
+  }
+  getData(){
+    if(localStorage.getItem("accounts")){
+      this.accounts = JSON.parse(localStorage.getItem('accounts') || "")
+    }
+    if(localStorage.getItem("cuser")){
+      this.cuser = JSON.parse(localStorage.getItem('cuser') || "")
+    }
   }
 }
