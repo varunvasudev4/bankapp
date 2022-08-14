@@ -107,4 +107,10 @@ export class DataService {
       this.cuser = JSON.parse(localStorage.getItem('cuser') || "")
     }
   }
+
+  del(){
+    delete this.accounts[this.cuser]
+    this.saveData()
+    return true
+  }
 }

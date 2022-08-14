@@ -8,11 +8,13 @@
 <nav class="navbar bg-light">
     <div class="container">
       <span class="navbar-brand mb-0 h1 text-dark" id="accname">Welcome {{uname}}</span>
-      <span class="text-end brand text-dark" id="datetime">Your login was on </span>
+      <span class="text-end brand text-dark" id="datetime">Your login was on {{logtime|date:'short'}} </span>
       <span><button type="button" class="btn btn-primary" (click)="logout()">Logout</button></span>
     </div>
 </nav>
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<button class="btn btn-danger mt-3 ms-3 mb-3" (click)="delacc()">Delete Account</button>
+<app-acc-delete (onCancel)="cancel()" (onConfirm)="delete()" [item]="acno"></app-acc-delete>
+<ul [ngClass]="acno?'disnone':''" class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#balancecheck-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Balance Check</button>
     </li>
@@ -26,7 +28,7 @@
         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#edeposit-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">E-Deposit</button>
       </li>
   </ul>
-  <div class="tab-content" id="myTabContent">
+  <div [ngClass]="acno?'disnone':''" class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="balancecheck-tab-pane" role="tabpanel" aria-labelledby="balancecheck-tab" tabindex="0">
         <div class="input-group mt-5 ms-5 w-50">
             <select name="accnumber" id="accnumber" class="form-control border-end-0">
@@ -39,7 +41,7 @@
         </div>
         <p id="accbalance" class="mt-5 ms-5">{{accbal}}</p>
     </div>
-    <div class="tab-pane fade" id="statement-tab-pane" role="tabpanel" aria-labelledby="statement-tab" tabindex="0">
+    <div [ngClass]="acno?'disnone':''" class="tab-pane fade" id="statement-tab-pane" role="tabpanel" aria-labelledby="statement-tab" tabindex="0">
         <div class="input-group mt-5 ms-5 w-50">
             <select name="accnumber" id="accnumber" class="form-control border-end-0">
                 <option value="">Select account</option>
@@ -62,7 +64,7 @@
             </tbody>
         </table>
     </div>
-    <div class="tab-pane fade" id="fundtransfer-tab-pane" role="tabpanel" aria-labelledby="fundtransfer-tab" tabindex="0">
+    <div [ngClass]="acno?'disnone':''" class="tab-pane fade" id="fundtransfer-tab-pane" role="tabpanel" aria-labelledby="fundtransfer-tab" tabindex="0">
         <div class="input-group mt-5 ms-5 w-50">
             <span class="input-group-text bg-warning" id="basic-addon1">From</span>
             <select name="accnumberfrom" id="accnumberfrom" class="form-control bg-light" aria-label="accnumber" aria-describedby="basic-addon1">
@@ -89,7 +91,7 @@
         </form>
     </div>
     <form [formGroup]="dform">
-        <div class="tab-pane fade" id="edeposit-tab-pane" role="tabpanel" aria-labelledby="edeposit-tab" tabindex="0">
+        <div [ngClass]="acno?'disnone':''"  class="tab-pane fade" id="edeposit-tab-pane" role="tabpanel" aria-labelledby="edeposit-tab" tabindex="0">
             <div class="input-group mt-5 ms-5 w-50">
                 <span class="input-group-text bg-primary" id="basic-addon1">To</span>
                 <select name="accnumberfrom" id="accnumberfrom" class="form-control bg-light" aria-label="accnumber" aria-describedby="basic-addon1">

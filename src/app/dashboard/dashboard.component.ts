@@ -14,12 +14,14 @@ export class DashboardComponent implements OnInit {
   uname = ""
   acc1 = ""
   accbal = ""
+  acno = ""
   //accamt = ""
   // accto = ""
   // toamt = ""
   constructor(private router: Router, private ds: DataService, private fb: FormBuilder) {
     this.uname = this.ds.accounts[this.ds.cuser]['accname']
     this.acc1 = this.ds.cuser
+    this.logtime = Date()
   }
 
   ftform = this.fb.group({
@@ -68,4 +70,23 @@ export class DashboardComponent implements OnInit {
     //console.log(this.trans);
 
   }
+
+  delacc(){
+    this.acno=this.ds.cuser
+  }
+
+  cancel(){
+    this.acno=""
+  }
+
+  delete(){
+    const result=this.ds.del()
+    if(result){
+      alert("Deleted Successfully")
+      this.logout()
+    }
+  }
+
+  logtime:any
+  
 }
